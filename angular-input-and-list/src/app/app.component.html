@@ -1,0 +1,16 @@
+<input  (keydown.enter)="onSave()"
+        [(ngModel)]="inputContent"
+        (keyup.arrowup)="onMove('arrowup')"
+        (keyup.arrowdown)="onMove('arrowdown')"
+        (focus)="myFocusVar = true"
+        (focusout)="myFocusVar = false">
+        <button (click)=toggleDisplay()>Toggle List Visibility</button>  
+<div *ngIf="this.items.length > 0" [hidden]="isHidden">
+  <ul>
+    <ng-container *ngFor="let item of items | slice:this.start:this.end; let i = index">
+      <li [ngClass]="{'withBorder': i === this.itemWithBorder}">
+        {{item.itemNumber}} - {{item.itemName}}
+      </li> 
+    </ng-container>
+  </ul>
+</div>
